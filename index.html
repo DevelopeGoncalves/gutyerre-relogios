@@ -5,215 +5,544 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Relojoaria Gutorepublicano - Acessórios Premium</title>
     <style>
-        /* Estilos Originais (Mantidos) */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%); color: #fff; }
-        header { background: rgba(0, 0, 0, 0.95); padding: 20px 0; position: fixed; width: 100%; top: 0; z-index: 1000; box-shadow: 0 2px 20px rgba(255, 215, 0, 0.3); }
-        .logo-container { text-align: center; padding: 20px; }
-        nav { text-align: center; margin-top: 10px; }
-        nav a { color: #FFD700; text-decoration: none; margin: 0 15px; font-weight: 600; transition: all 0.3s; position: relative; }
-        nav a:hover { color: #FFF; text-shadow: 0 0 10px #FFD700; }
-        .hero { margin-top: 200px; text-align: center; padding: 60px 20px; }
-        .hero h1 { font-size: 3em; color: #FFD700; margin-bottom: 20px; text-shadow: 0 0 20px rgba(255, 215, 0, 0.5); }
-        .hero p { font-size: 1.3em; margin-bottom: 30px; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
-        .produtos { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px; }
-        .produto-card { 
-            background: rgba(255, 215, 0, 0.1); border: 2px solid #FFD700; border-radius: 15px; padding: 20px; text-align: center; 
-            transition: all 0.3s; cursor: pointer; height: 100%; /* Garante altura uniforme */
+        /* Variáveis para consistência de cor (Dourado Premium) */
+        :root {
+            --cor-primaria: #C9AE48; /* Dourado mais sóbrio e elegante */
+            --cor-fundo-card: rgba(201, 174, 72, 0.05); /* Fundo sutil para cards */
+            --sombra-card: 0 5px 15px rgba(201, 174, 72, 0.2);
+            --cor-verde-whatsapp: #25D366;
+            --cor-fundo-escuro: #0a0a0a;
         }
-        .produto-card:hover { transform: translateY(-10px); box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4); background: rgba(255, 215, 0, 0.2); }
-        .produto-icon { font-size: 4em; margin-bottom: 15px; }
-        .produto-card h3 { color: #FFD700; margin-bottom: 10px; font-size: 1.5em; }
-        .produto-card p { margin-bottom: 20px; line-height: 1.6; }
         
-        /* Novo Botão Principal de Finalizar */
-        .btn-finalizar {
-            background: #FFD700 !important; color: #000 !important; font-weight: 700;
-            font-size: 1.4em !important; padding: 20px 50px !important; border: none;
-            border-radius: 30px; cursor: pointer; transition: all 0.3s; text-decoration: none;
+        /* Estilos Globais Refinados */
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+        }
+        
+        body { 
+            /* Tipografia Premium */
+            font-family: 'Georgia', 'Times New Roman', serif; 
+            background: linear-gradient(135deg, #000000 0%, var(--cor-fundo-escuro) 100%); 
+            color: #e0e0e0; 
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+        
+        /* --- HEADER --- */
+        header { 
+            background: rgba(0, 0, 0, 0.9); /* Fundo escuro */
+            backdrop-filter: blur(10px); /* Glassmorphism */
+            padding: 15px 0; 
+            /* REMOVIDO: position: fixed; */
+            width: 100%; 
+            z-index: 1000; 
+            box-shadow: 0 1px 15px rgba(201, 174, 72, 0.5); 
+            border-bottom: 1px solid var(--cor-primaria);
+        }
+
+        .logo-container { 
+            text-align: center; 
+            padding: 10px; 
+        }
+        
+        .logo-container h2 {
+            font-family: 'Verdana', sans-serif; 
+            font-style: normal;
+            font-size: 1.8em;
+        }
+
+        nav { 
+            text-align: center; 
+            margin-top: 10px; 
+            border-top: 1px solid rgba(255, 255, 255, 0.1); 
+            padding-top: 10px;
+        }
+        
+        nav a { 
+            color: var(--cor-primaria); 
+            text-decoration: none; 
+            margin: 0 18px; 
+            font-weight: 500; 
+            transition: all 0.3s ease-in-out; 
+            position: relative; 
+            letter-spacing: 0.5px;
+            font-family: 'Verdana', sans-serif;
+            padding-bottom: 5px;
+        }
+        
+        nav a:hover { 
+            color: #FFF; 
+            text-shadow: 0 0 5px var(--cor-primaria); 
+            border-bottom: 2px solid #FFF; 
+        }
+        
+        /* --- SEÇÃO HERO/DESTAQUE E LOGO --- */
+        .hero { 
+            text-align: center; 
+            padding: 80px 20px 100px; 
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            background: radial-gradient(circle at center, rgba(201, 174, 72, 0.15) 0%, rgba(0, 0, 0, 0) 70%); 
+        }
+        
+        /* Novo estilo para a Logo no Hero (Alto Impacto) */
+        .hero-logo {
+            max-width: 200px; /* Tamanho considerável */
+            height: auto;
+            margin-bottom: 30px;
+            opacity: 0.95;
+            /* Efeito de brilho dourado intenso */
+            filter: drop-shadow(0 0 15px rgba(201, 174, 72, 1)) drop-shadow(0 0 5px rgba(255, 255, 255, 0.5)); 
+            /* Animação sutil */
+            animation: fadeScale 2s ease-out;
+        }
+
+        @keyframes fadeScale {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 0.95; transform: scale(1); }
+        }
+
+        .hero h1 { 
+            font-size: 4.5em; 
+            color: var(--cor-primaria); 
+            margin-bottom: 10px; 
+            text-shadow: 0 0 30px rgba(201, 174, 72, 0.5); 
+            font-family: 'Times New Roman', serif;
+            font-weight: 900;
+        }
+        
+        .hero p { 
+            font-size: 1.5em; 
+            margin-bottom: 30px; 
+            color: #aaa;
+        }
+
+        /* --- SEÇÃO DE PRODUTOS E OUTROS --- */
+        .container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 60px 20px; 
+        }
+        
+        .container h2, .sobre h2 {
+            text-align: center; 
+            color: var(--cor-primaria); 
+            font-size: 3em; 
+            margin-bottom: 40px; 
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 2px;
+            border-bottom: 2px solid var(--cor-primaria);
             display: inline-block;
+            padding-bottom: 10px;
+        }
+        
+        .produtos { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 40px; 
+            margin-top: 20px; 
+        }
+        
+        .produto-card { 
+            background: var(--cor-fundo-card); 
+            border: 1px solid var(--cor-primaria); 
+            border-radius: 10px; 
+            padding: 25px; 
+            text-align: center; 
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+            cursor: pointer; 
+            height: 100%; 
+            box-shadow: var(--sombra-card);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Efeito de luz (shine) no hover */
+        .produto-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -75%;
+            width: 50%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: skewX(-45deg);
+            transition: left 0.5s ease;
+        }
+
+        .produto-card:hover { 
+            transform: scale(1.05); 
+            box-shadow: 0 15px 40px rgba(201, 174, 72, 0.5); 
+            background: rgba(201, 174, 72, 0.15); 
+        }
+
+        .produto-card:hover::before {
+            left: 125%;
+        }
+        
+        .produto-icon { 
+            font-size: 5em; 
+            margin-bottom: 15px; 
+            filter: drop-shadow(0 0 5px var(--cor-primaria)); 
+        }
+        
+        .produto-card h3 { 
+            color: var(--cor-primaria); 
+            margin-bottom: 10px; 
+            font-size: 1.8em; 
+            font-family: 'Verdana', sans-serif;
+            font-weight: 700;
+        }
+        
+        .produto-card p { 
+            margin-bottom: 25px; 
+            line-height: 1.6; 
+            font-family: 'Verdana', sans-serif;
+            font-size: 0.95em;
+            color: #bbb;
+        }
+        
+        /* Botão Secundário (Ver Modelos) */
+        .btn-card-modelos {
+            background: var(--cor-verde-whatsapp) !important; 
+            color: #fff !important; 
+            padding: 12px 25px !important; 
+            border: none;
+            border-radius: 5px; 
+            cursor: pointer; 
+            transition: background 0.3s;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: none; 
+            display: inline-block;
+        }
+        .btn-card-modelos:hover {
+            background: #1eac54 !important;
+            transform: translateY(-2px);
+        }
+
+        /* Botão Principal de Finalizar */
+        .btn-finalizar {
+            background: var(--cor-primaria) !important; 
+            color: #000 !important; 
+            font-weight: 800;
+            font-size: 1.5em !important; 
+            padding: 20px 60px !important; 
+            border: none;
+            border-radius: 50px; 
+            cursor: pointer; 
+            transition: all 0.3s ease-in-out; 
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .btn-finalizar:hover {
-            background: #E6C200 !important;
-            transform: scale(1.05);
-            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.6);
+            background: #b59e44 !important; 
+            transform: scale(1.03);
+            box-shadow: 0 8px 20px rgba(201, 174, 72, 0.7);
         }
 
-        .sobre { background: rgba(255, 215, 0, 0.05); padding: 60px 20px; margin: 60px 0; border-top: 2px solid #FFD700; border-bottom: 2px solid #FFD700; }
-        .sobre h2 { text-align: center; color: #FFD700; font-size: 2.5em; margin-bottom: 30px; }
-        .sobre-content { max-width: 800px; margin: 0 auto; text-align: center; font-size: 1.1em; line-height: 1.8; }
-        footer { background: rgba(0, 0, 0, 0.95); text-align: center; padding: 30px 20px; margin-top: 60px; }
-        footer p { color: #FFD700; }
+        /* Seção Sobre Nós */
+        .sobre { 
+            background: rgba(201, 174, 72, 0.05); 
+            padding: 80px 20px; 
+            margin: 60px 0; 
+            border-top: 1px solid var(--cor-primaria); 
+            border-bottom: 1px solid var(--cor-primaria); 
+        }
+        
+        .sobre-content { 
+            max-width: 900px; 
+            margin: 0 auto; 
+            text-align: justify; 
+            font-size: 1.15em; 
+            line-height: 1.8; 
+            font-family: 'Verdana', sans-serif;
+            color: #ccc;
+        }
+        
+        /* Footer */
+        footer { 
+            background: rgba(0, 0, 0, 0.98); 
+            text-align: center; 
+            padding: 30px 20px; 
+            margin-top: 0; 
+            border-top: 1px solid var(--cor-primaria);
+        }
+        
+        footer p { 
+            color: var(--cor-primaria); 
+            font-family: 'Verdana', sans-serif;
+        }
 
         /* Estilo do Badge de Carrinho (Contador) */
         #carrinho-badge {
             background: #FF0000;
             color: white;
             border-radius: 50%;
-            padding: 2px 7px;
-            font-size: 0.7em;
+            padding: 3px 8px; 
+            font-size: 0.8em;
+            font-weight: bold;
             position: absolute;
-            top: 15px;
-            right: 0;
-            display: none; /* Inicialmente oculto */
+            top: 5px; 
+            right: -15px; 
+            display: none; 
+            border: 2px solid #000;
+            animation: pulse 1s infinite; 
         }
         
+        /* Keyframes para animação pulse */
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(255, 0, 0, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0); }
+        }
+
+        nav a {
+            position: relative;
+        }
+
         /* Estilos do WhatsApp Flutuante */
         .whatsapp-float {
-            position: fixed; width: 60px; height: 60px; bottom: 30px; right: 30px;
-            background-color: #25D366; color: #FFF; border-radius: 50px; text-align: center;
-            font-size: 35px; box-shadow: 2px 2px 15px rgba(37, 211, 102, 0.5); z-index: 1000;
+            position: fixed; width: 65px; height: 65px; bottom: 35px; right: 35px; 
+            background-color: var(--cor-verde-whatsapp); color: #FFF; border-radius: 50%; text-align: center;
+            font-size: 38px; box-shadow: 0 4px 20px rgba(37, 211, 102, 0.7); z-index: 1000;
             display: flex; align-items: center; justify-content: center; cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.3s ease-in-out;
+            line-height: 65px;
+            animation: float 2s ease-in-out infinite; 
         }
-        .whatsapp-float:hover { transform: scale(1.1); box-shadow: 2px 2px 25px rgba(37, 211, 102, 0.8); }
+        
+        /* Keyframes para animação float */
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+            100% { transform: translateY(0); }
+        }
+
+        .whatsapp-float:hover { 
+            transform: scale(1.15) rotate(5deg); 
+            box-shadow: 0 6px 30px rgba(37, 211, 102, 1); 
+            animation: none; 
+        }
 
         /* ======================================= */
-        /* ESTILOS DO MODAL (NOVO CATÁLOGO) */
+        /* ESTILOS DO MODAL (CATÁLOGO) */
         /* ======================================= */
         .modal {
-            display: none; /* Oculto por padrão */
+            display: none; 
             position: fixed;
-            z-index: 2000; /* Acima de tudo */
+            z-index: 2000; 
             left: 0;
             top: 0;
             width: 100%;
             height: 100%;
             overflow: auto;
-            background-color: rgba(0,0,0,0.8); /* Fundo escuro transparente */
+            background-color: rgba(0,0,0,0.95); 
             justify-content: center;
             align-items: center;
             animation: fadeIn 0.3s;
         }
 
         .modal-conteudo {
-            background-color: #1a1a1a;
-            margin: 5% auto; /* Centraliza verticalmente */
-            padding: 20px;
-            border: 2px solid #FFD700;
-            border-radius: 10px;
-            width: 90%;
-            max-width: 1000px;
-            max-height: 90vh; /* Limita a altura da tela */
+            background-color: #0d0d0d; 
+            margin: 5% auto; 
+            padding: 30px; 
+            border: 2px solid var(--cor-primaria);
+            border-radius: 15px; 
+            width: 95%;
+            max-width: 1100px;
+            max-height: 90vh; 
             overflow-y: auto;
             position: relative;
-            box-shadow: 0 5px 30px rgba(255, 215, 0, 0.5);
-            animation: slideIn 0.5s;
+            box-shadow: 0 10px 40px rgba(201, 174, 72, 0.7); 
+            animation: slideIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        /* Scrollbar customizada */
+        .modal-conteudo::-webkit-scrollbar {
+            width: 8px;
+        }
+        .modal-conteudo::-webkit-scrollbar-thumb {
+            background-color: var(--cor-primaria);
+            border-radius: 10px;
+        }
+        .modal-conteudo::-webkit-scrollbar-track {
+            background: #1a1a1a;
         }
 
         .modal-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid rgba(255, 215, 0, 0.5);
-            padding-bottom: 15px;
-            margin-bottom: 20px;
+            border-bottom: 2px solid var(--cor-primaria); 
+            padding-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         .modal-header h2 {
-            color: #FFD700;
-            font-size: 2em;
+            color: var(--cor-primaria);
+            font-size: 2.5em;
+            text-transform: uppercase;
+            font-family: 'Verdana', sans-serif;
+            margin-bottom: 0;
         }
 
         .close {
-            color: #FFD700;
-            font-size: 30px;
-            font-weight: bold;
+            color: var(--cor-primaria);
+            font-size: 40px; 
+            font-weight: 300;
             cursor: pointer;
-            transition: color 0.2s;
+            transition: color 0.2s, transform 0.3s;
         }
 
         .close:hover, .close:focus {
             color: #FFF;
+            transform: rotate(90deg);
         }
 
         .item-detalhe {
             display: flex;
             align-items: center;
-            margin-bottom: 20px;
-            padding: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
-            transition: background 0.2s;
+            margin-bottom: 25px;
+            padding: 20px;
+            background: rgba(201, 174, 72, 0.03); 
+            border: 1px solid rgba(201, 174, 72, 0.3); 
+            border-radius: 10px;
+            transition: background 0.2s, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.7); 
+            position: relative; 
         }
-
+        
         .item-detalhe:hover {
-            background-color: rgba(255, 255, 255, 0.05);
+            background-color: rgba(201, 174, 72, 0.12); 
+            transform: translateY(-3px); 
+            box-shadow: 0 8px 25px rgba(201, 174, 72, 0.5);
         }
 
         .item-imagem {
-            width: 100px;
-            height: 100px;
+            width: 120px; 
+            height: 120px;
             object-fit: cover;
             border-radius: 5px;
-            margin-right: 20px;
-            border: 1px solid #FFD700;
+            margin-right: 25px;
+            border: 3px solid var(--cor-primaria); 
+            box-shadow: 0 0 15px rgba(201, 174, 72, 0.8); 
+            background-color: #1a1a1a; 
+            display: block;
+            
+            /* Placeholder elegante (SVG - Icone de Imagem) */
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23C9AE48' d='M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM8.5 13.5l2.5 3.01L14.5 11l4.5 6H5l3.5-4.5z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-size: 50px;
+            background-position: center;
         }
 
         .item-info {
             flex-grow: 1;
+            font-family: 'Verdana', sans-serif;
         }
 
         .item-info h4 {
-            color: #FFD700;
+            color: #FFF; 
             margin-bottom: 5px;
-            font-size: 1.2em;
+            font-size: 1.6em; 
+            font-weight: 700;
+            text-transform: uppercase;
         }
         
         .item-descricao {
-            color: #ccc;
-            font-size: 0.9em;
-            margin-bottom: 5px;
-        }
-
-        .item-preco {
-            font-weight: bold;
-            color: #25D366; /* Verde para destaque do preço */
+            color: #aaa;
+            font-size: 1em;
             margin-bottom: 10px;
         }
 
+        .item-preco {
+            font-weight: 800; 
+            color: #FFF; 
+            font-size: 1.6em; 
+            margin-bottom: 15px;
+            text-shadow: 0 0 8px var(--cor-verde-whatsapp); 
+        }
+
         .btn-adicionar-modal {
-            background: #25D366;
-            color: white;
-            padding: 8px 15px;
+            background: var(--cor-primaria); 
+            color: #000;
+            font-weight: 700;
+            padding: 12px 25px; 
             border: none;
-            border-radius: 5px;
+            border-radius: 8px; 
             cursor: pointer;
-            transition: background 0.3s;
-            font-size: 0.9em;
+            transition: all 0.3s ease-in-out, background 0.4s;
+            font-size: 1.1em; 
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .btn-adicionar-modal:hover {
-            background: #20ba5a;
+            background: #b59e44;
+            transform: translateY(-2px);
+        }
+        
+        .btn-added { 
+            background: #00AA00 !important;
+            color: #FFF !important;
+            transform: scale(1.05);
+            pointer-events: none; 
+            box-shadow: 0 0 10px rgba(0, 170, 0, 0.8);
         }
 
         /* ANIMAÇÕES */
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes slideIn { from { transform: translateY(-50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        @keyframes slideIn { from { transform: translateY(-70px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
         /* --- MEDIA QUERIES (ADAPTAÇÃO PARA SMARTPHONE) --- */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2em; }
-            nav a { display: block; margin: 10px 0; }
+            
+            .hero { 
+                padding: 40px 10px 60px; 
+            }
+            .hero-logo {
+                max-width: 150px; /* Reduz tamanho da logo em mobile */
+                margin-bottom: 20px;
+            }
+            .hero h1 { font-size: 2.5em; }
+            .hero p { font-size: 1.1em; }
+            
+            nav a { 
+                display: block; 
+                margin: 10px 0; 
+            }
+
             .produtos { grid-template-columns: 1fr; }
             
             /* Adaptação do Modal para Mobile */
             .modal-conteudo {
-                margin: 20px auto;
-                width: 95%;
+                margin: 15px auto;
+                width: 98%;
+                padding: 15px;
             }
             
+            .modal-header h2 {
+                font-size: 1.8em;
+            }
+
             .item-detalhe {
                 flex-direction: column;
                 align-items: flex-start;
+                padding: 15px;
             }
             
             .item-imagem {
                 width: 100%;
                 height: auto;
-                max-height: 200px;
+                max-height: 180px;
                 margin-right: 0;
                 margin-bottom: 10px;
             }
@@ -222,10 +551,28 @@
                 width: 100%;
                 text-align: left;
             }
+            
+            .item-info h4 {
+                font-size: 1.3em;
+            }
 
             .btn-adicionar-modal {
                 width: 100%;
                 margin-top: 10px;
+            }
+
+            .whatsapp-float {
+                width: 55px; height: 55px; bottom: 20px; right: 20px;
+                font-size: 30px;
+            }
+            
+            .btn-finalizar {
+                font-size: 1.2em !important; 
+                padding: 15px 40px !important; 
+            }
+            
+            .sobre-content {
+                text-align: left;
             }
         }
     </style>
@@ -233,7 +580,7 @@
 <body>
     <header>
         <div class="logo-container">
-            <h2 style="color: #FFD700; font-style: italic;">Relojoaria Gutorepublicano</h2>
+            <h2 style="color: var(--cor-primaria); font-style: italic;">Relojoaria Gutorepublicano</h2>
             <p style="color: #fff; font-size: 0.9em; margin-top: 5px;">Há mais de 15 anos</p>
         </div>
         <nav>
@@ -244,61 +591,67 @@
     </header>
 
     <div class="hero">
+        <img src="img/logo_gutorepublicano.png" alt="Gutorepublicano Logo" class="hero-logo">
+        
         <h1>Acessórios Premium</h1>
         <p>Qualidade e estilo para você!</p>
     </div>
 
     <div class="container" id="produtos">
-        <h2 style="text-align: center; color: #FFD700; font-size: 2.5em; margin-bottom: 20px;">Nosso Catálogo</h2>
+        <div style="text-align: center;">
+            <h2 style="text-align: center; color: var(--cor-primaria); font-size: 2.5em; margin-bottom: 20px;">Nosso Catálogo</h2>
+        </div>
         
         <div class="produtos">
             <div class="produto-card" onclick="abrirModal('Relógios')">
                 <div class="produto-icon">⌚</div>
                 <h3>Relógios</h3>
                 <p>Relógios masculinos e femininos das melhores marcas. Clique para ver todos os modelos!</p>
-                <button class="btn-finalizar" style="background: #25D366 !important; color: #fff !important; padding: 10px 20px !important;">Ver Modelos</button>
+                <button class="btn-card-modelos">Ver Modelos</button>
             </div>
 
             <div class="produto-card" onclick="abrirModal('Cordões')">
                 <div class="produto-icon">📿</div>
                 <h3>Cordões</h3>
                 <p>Cordões em prata, ouro e aço. Diversos modelos e tamanhos disponíveis. Clique para ver!</p>
-                <button class="btn-finalizar" style="background: #25D366 !important; color: #fff !important; padding: 10px 20px !important;">Ver Modelos</button>
+                <button class="btn-card-modelos">Ver Modelos</button>
             </div>
 
             <div class="produto-card" onclick="abrirModal('Anéis')">
                 <div class="produto-icon">💍</div>
                 <h3>Anéis</h3>
                 <p>Anéis exclusivos para todos os estilos. Destaque-se com sofisticação! Clique para ver!</p>
-                <button class="btn-finalizar" style="background: #25D366 !important; color: #fff !important; padding: 10px 20px !important;">Ver Modelos</button>
+                <button class="btn-card-modelos">Ver Modelos</button>
             </div>
 
             <div class="produto-card" onclick="abrirModal('Bonés')">
                 <div class="produto-icon">🧢</div>
                 <h3>Bonés</h3>
                 <p>Bonés das melhores marcas. Estilo e proteção para o seu dia a dia. Clique para ver!</p>
-                <button class="btn-finalizar" style="background: #25D366 !important; color: #fff !important; padding: 10px 20px !important;">Ver Modelos</button>
+                <button class="btn-card-modelos">Ver Modelos</button>
             </div>
 
             <div class="produto-card" onclick="abrirModal('Óculos')">
                 <div class="produto-icon">🕶️</div>
                 <h3>Óculos</h3>
                 <p>Óculos de sol e de grau. Proteção e estilo para seus olhos. Clique para ver!</p>
-                <button class="btn-finalizar" style="background: #25D366 !important; color: #fff !important; padding: 10px 20px !important;">Ver Modelos</button>
+                <button class="btn-card-modelos">Ver Modelos</button>
             </div>
 
             <div class="produto-card" onclick="abrirModal('Caixas de Som')">
                 <div class="produto-icon">🔊</div>
                 <h3>Caixas de Som</h3>
                 <p>Som de qualidade para suas festas e momentos especiais! Clique para ver os itens!</p>
-                <button class="btn-finalizar" style="background: #25D366 !important; color: #fff !important; padding: 10px 20px !important;">Ver Modelos</button>
+                <button class="btn-card-modelos">Ver Modelos</button>
             </div>
         </div>
     </div>
 
     <div class="sobre" id="sobre">
         <div class="container">
-            <h2>Sobre Nós</h2>
+            <div style="text-align: center;">
+                <h2>Sobre Nós</h2>
+            </div>
             <div class="sobre-content">
                 <p>Com <strong>mais de 15 anos de experiência</strong>, a Relojoaria Gutorepublicano é referência em acessórios de qualidade. Nossa loja física oferece os melhores produtos com atendimento personalizado.</p>
                 <p style="margin-top: 20px;">Trabalhamos com marcas reconhecidas e garantimos a procedência de todos os nossos produtos. Venha nos visitar e conheça nossa variedade!</p>
@@ -307,9 +660,11 @@
     </div>
 
     <div class="container" id="finalizar">
-        <h2 style="text-align: center; color: #FFD700; font-size: 2.5em; margin-bottom: 30px;">
-            🛒 Finalizar Pedido
-        </h2>
+        <div style="text-align: center;">
+            <h2 style="text-align: center; color: var(--cor-primaria); font-size: 2.5em; margin-bottom: 30px;">
+                🛒 Finalizar Pedido
+            </h2>
+        </div>
         <div style="text-align: center; font-size: 1.2em;">
             <p style="margin-bottom: 20px;">
                 Após adicionar os itens no carrinho, clique no botão abaixo para enviar seu pedido detalhado via WhatsApp.
@@ -344,97 +699,109 @@
     </div>
     
     <script>
-        // COLOQUE TODO O CÓDIGO JAVASCRIPT DA SEÇÃO 'B' AQUI
-        
         const carrinho = [];
+        // Substitua este número pelo seu WhatsApp (código do país + DDD + número)
         const telefoneWhatsApp = '5527995737751'; 
 
-        // --- Catálogo de Produtos Detalhados ---
+        // --- Catálogo de Produtos Detalhados (CAMINHOS DE IMAGEM ATUALIZADOS) ---
         const catalogo = { 
             'Relógios': [
-                { nome: 'Relógio Chronos Luxo', preco: 450.00, imagem: 'placeholder_relogio_1.jpg', descricao: 'Aço inoxidável, à prova d\'água.' },
-                { nome: 'Smartwatch Esportivo Z', preco: 699.90, imagem: 'placeholder_relogio_2.jpg', descricao: 'Monitor cardíaco e GPS.' },
-                { nome: 'Relógio Minimalista', preco: 199.90, imagem: 'placeholder_relogio_3.jpg', descricao: 'Design fino, pulseira de couro.' },
-                { nome: 'Relógio Vintage Couro', preco: 310.00, imagem: 'placeholder_relogio_4.jpg', descricao: 'Estilo clássico, mostrador em bronze.' },
-                { nome: 'Relógio Feminino Quartz', preco: 220.00, imagem: 'placeholder_relogio_5.jpg', descricao: 'Cristais cravejados, delicado.' },
-                { nome: 'Relógio Masculino Titanium', preco: 580.00, imagem: 'placeholder_relogio_6.jpg', descricao: 'Extremamente leve e resistente.' },
-                { nome: 'Kit 2 Relógios Casal', preco: 850.00, imagem: 'placeholder_relogio_7.jpg', descricao: 'Perfeito para presentear.' },
-                { nome: 'Relógio Militar Tático', preco: 490.00, imagem: 'placeholder_relogio_8.jpg', descricao: 'Altímetro e bússola digitais.' },
-                { nome: 'Relógio Pulseira Mesh', preco: 330.00, imagem: 'placeholder_relogio_9.jpg', descricao: 'Pulseira de malha de aço ajustável.' },
-                { nome: 'Relógio Clássico Gold', preco: 1200.00, imagem: 'placeholder_relogio_10.jpg', descricao: 'Banhado a ouro 18k, edição limitada.' }
+                { nome: 'Relógio Chronos Luxo', preco: 450.00, imagem: 'img/placeholder_relogio_1.jpg', descricao: 'Aço inoxidável, à prova d\'água.' },
+                { nome: 'Smartwatch Esportivo Z', preco: 699.90, imagem: 'img/placeholder_relogio_2.jpg', descricao: 'Monitor cardíaco e GPS.' },
+                { nome: 'Relógio Minimalista', preco: 199.90, imagem: 'img/placeholder_relogio_3.jpg', descricao: 'Design fino, pulseira de couro.' },
+                { nome: 'Relógio Vintage Couro', preco: 310.00, imagem: 'img/placeholder_relogio_4.jpg', descricao: 'Estilo clássico, mostrador em bronze.' },
+                { nome: 'Relógio Feminino Quartz', preco: 220.00, imagem: 'img/placeholder_relogio_5.jpg', descricao: 'Cristais cravejados, delicado.' },
+                { nome: 'Relógio Masculino Titanium', preco: 580.00, imagem: 'img/placeholder_relogio_6.jpg', descricao: 'Extremamente leve e resistente.' },
+                { nome: 'Kit 2 Relógios Casal', preco: 850.00, imagem: 'img/placeholder_relogio_7.jpg', descricao: 'Perfeito para presentear.' },
+                { nome: 'Relógio Militar Tático', preco: 490.00, imagem: 'img/placeholder_relogio_8.jpg', descricao: 'Altímetro e bússola digitais.' },
+                { nome: 'Relógio Pulseira Mesh', preco: 330.00, imagem: 'img/placeholder_relogio_9.jpg', descricao: 'Pulseira de malha de aço ajustável.' },
+                { nome: 'Relógio Clássico Gold', preco: 1200.00, imagem: 'img/placeholder_relogio_10.jpg', descricao: 'Banhado a ouro 18k, edição limitada.' }
             ],
             'Cordões': [
-                { nome: 'Cordão Aço Inox Fino', preco: 150.00, imagem: 'placeholder_cordao_1.jpg', descricao: '45cm, fecho lagosta.' },
-                { nome: 'Cordão Prata 925 Grumet', preco: 420.00, imagem: 'placeholder_cordao_2.jpg', descricao: 'Prata legítima, elo duplo.' },
-                { nome: 'Corrente Banhada Ouro', preco: 250.00, imagem: 'placeholder_cordao_3.jpg', descricao: '70cm, antialérgica.' },
-                { nome: 'Pingente Cruz Cravejada', preco: 90.00, imagem: 'placeholder_cordao_4.jpg', descricao: 'Zircônias, com cordão de 60cm.' },
-                { nome: 'Colar de Pérolas', preco: 330.00, imagem: 'placeholder_cordao_5.jpg', descricao: 'Pérolas barrocas naturais.' },
-                { nome: 'Corrente Cartier 3mm', preco: 195.00, imagem: 'placeholder_cordao_6.jpg', descricao: 'Aço, largura média.' },
-                { nome: 'Gargantilha Ponto Luz', preco: 110.00, imagem: 'placeholder_cordao_7.jpg', descricao: 'Delicada, prata.' },
-                { nome: 'Cordão Couro Masculino', preco: 75.00, imagem: 'placeholder_cordao_8.jpg', descricao: 'Com fecho magnético.' },
-                { nome: 'Corrente Veneziana', preco: 140.00, imagem: 'placeholder_cordao_9.jpg', descricao: 'Clássica, fina.' },
-                { nome: 'Pingente Olho Grego', preco: 120.00, imagem: 'placeholder_cordao_10.jpg', descricao: 'Prata com resina azul.' }
+                { nome: 'Cordão Aço Inox Fino', preco: 150.00, imagem: 'img/placeholder_cordao_1.jpg', descricao: '45cm, fecho lagosta.' },
+                { nome: 'Cordão Prata 925 Grumet', preco: 420.00, imagem: 'img/placeholder_cordao_2.jpg', descricao: 'Prata legítima, elo duplo.' },
+                { nome: 'Corrente Banhada Ouro', preco: 250.00, imagem: 'img/placeholder_cordao_3.jpg', descricao: '70cm, antialérgica.' },
+                { nome: 'Pingente Cruz Cravejada', preco: 90.00, imagem: 'img/placeholder_cordao_4.jpg', descricao: 'Zircônias, com cordão de 60cm.' },
+                { nome: 'Colar de Pérolas', preco: 330.00, imagem: 'img/placeholder_cordao_5.jpg', descricao: 'Pérolas barrocas naturais.' },
+                { nome: 'Corrente Cartier 3mm', preco: 195.00, imagem: 'img/placeholder_cordao_6.jpg', descricao: 'Aço, largura média.' },
+                { nome: 'Gargantilha Ponto Luz', preco: 110.00, imagem: 'img/placeholder_cordao_7.jpg', descricao: 'Delicada, prata.' },
+                { nome: 'Cordão Couro Masculino', preco: 75.00, imagem: 'img/placeholder_cordao_8.jpg', descricao: 'Com fecho magnético.' },
+                { nome: 'Corrente Veneziana', preco: 140.00, imagem: 'img/placeholder_cordao_9.jpg', descricao: 'Clássica, fina.' },
+                { nome: 'Pingente Olho Grego', preco: 120.00, imagem: 'img/placeholder_cordao_10.jpg', descricao: 'Prata com resina azul.' }
             ],
             'Anéis': [
-                { nome: 'Anel Solitário Zircônia', preco: 750.00, imagem: 'placeholder_aneis_1.jpg', descricao: 'Ouro 18k, para noivado.' },
-                { nome: 'Anel Aparador Prata', preco: 210.00, imagem: 'placeholder_aneis_2.jpg', descricao: 'Com microzircônias.' },
-                { nome: 'Aliança Tungstênio', preco: 290.00, imagem: 'placeholder_aneis_3.jpg', descricao: 'Modelo tradicional.' },
-                { nome: 'Anel Turquesa Oval', preco: 180.00, imagem: 'placeholder_aneis_4.jpg', descricao: 'Prata indiana com pedra.' },
-                { nome: 'Anel Cravejado Largo', preco: 380.00, imagem: 'placeholder_aneis_5.jpg', descricao: 'Banho de ródio, brilho intenso.' },
-                { nome: 'Anel Masculino Aço', preco: 160.00, imagem: 'placeholder_aneis_6.jpg', descricao: 'Aço escovado, robusto.' },
-                { nome: 'Anel Falange Duplo', preco: 85.00, imagem: 'placeholder_aneis_7.jpg', descricao: 'Para usar na ponta do dedo.' },
-                { nome: 'Anel Geométrico', preco: 145.00, imagem: 'placeholder_aneis_8.jpg', descricao: 'Prata, design moderno.' },
-                { nome: 'Kit 3 Anéis Finos', preco: 199.00, imagem: 'placeholder_aneis_9.jpg', descricao: 'Para combinar e empilhar.' },
-                { nome: 'Anel Coração Vazado', preco: 130.00, imagem: 'placeholder_aneis_10.jpg', descricao: 'Prata, feminino e delicado.' }
+                { nome: 'Anel Solitário Zircônia', preco: 750.00, imagem: 'img/placeholder_aneis_1.jpg', descricao: 'Ouro 18k, para noivado.' },
+                { nome: 'Anel Aparador Prata', preco: 210.00, imagem: 'img/placeholder_aneis_2.jpg', descricao: 'Com microzircônias.' },
+                { nome: 'Aliança Tungstênio', preco: 290.00, imagem: 'img/placeholder_aneis_3.jpg', descricao: 'Modelo tradicional.' },
+                { nome: 'Anel Turquesa Oval', preco: 180.00, imagem: 'img/placeholder_aneis_4.jpg', descricao: 'Prata indiana com pedra.' },
+                { nome: 'Anel Cravejado Largo', preco: 380.00, imagem: 'img/placeholder_aneis_5.jpg', descricao: 'Banho de ródio, brilho intenso.' },
+                { nome: 'Anel Masculino Aço', preco: 160.00, imagem: 'img/placeholder_aneis_6.jpg', descricao: 'Aço escovado, robusto.' },
+                { nome: 'Anel Falange Duplo', preco: 85.00, imagem: 'img/placeholder_aneis_7.jpg', descricao: 'Para usar na ponta do dedo.' },
+                { nome: 'Anel Geométrico', preco: 145.00, imagem: 'img/placeholder_aneis_8.jpg', descricao: 'Prata, design moderno.' },
+                { nome: 'Kit 3 Anéis Finos', preco: 199.00, imagem: 'img/placeholder_aneis_9.jpg', descricao: 'Para combinar e empilhar.' },
+                { nome: 'Anel Coração Vazado', preco: 130.00, imagem: 'img/placeholder_aneis_10.jpg', descricao: 'Prata, feminino e delicado.' }
             ],
             'Bonés': [
-                { nome: 'Boné Trucker Logo 3D', preco: 85.00, imagem: 'placeholder_bones_1.jpg', descricao: 'Telinha respirável, logo em alto relevo.' },
-                { nome: 'Boné Aba Reta Preto', preco: 75.00, imagem: 'placeholder_bones_2.jpg', descricao: 'Clássico, ajuste snapback.' },
-                { nome: 'Boné Dad Hat Off White', preco: 70.00, imagem: 'placeholder_bones_3.jpg', descricao: 'Estilo descontraído, 100% algodão.' },
-                { nome: 'Boné Camuflado Exército', preco: 65.00, imagem: 'placeholder_bones_4.jpg', descricao: 'Aba curva, padrão militar.' },
-                { nome: 'Boné Jeans Vintage', preco: 80.00, imagem: 'placeholder_bones_5.jpg', descricao: 'Lavagem clara, com rasgos.' },
-                { nome: 'Boné Esportivo Dry Fit', preco: 90.00, imagem: 'placeholder_bones_6.jpg', descricao: 'Tecido leve, ideal para corrida.' },
-                { nome: 'Boné Vermelho Básico', preco: 60.00, imagem: 'placeholder_bones_7.jpg', descricao: 'Aba curva, fivela ajustável.' },
-                { nome: 'Boné Infantil Tigre', preco: 55.00, imagem: 'placeholder_bones_8.jpg', descricao: 'A partir de 3 anos.' },
-                { nome: 'Boné de Couro Sintético', preco: 99.00, imagem: 'placeholder_bones_9.jpg', descricao: 'Preto fosco, premium.' },
-                { nome: 'Boné Bordado Floral', preco: 78.00, imagem: 'placeholder_bones_10.jpg', descricao: 'Detalhes coloridos na aba.' }
+                { nome: 'Boné Trucker Logo 3D', preco: 85.00, imagem: 'img/placeholder_bones_1.jpg', descricao: 'Telinha respirável, logo em alto relevo.' },
+                { nome: 'Boné Aba Reta Preto', preco: 75.00, imagem: 'img/placeholder_bones_2.jpg', descricao: 'Clássico, ajuste snapback.' },
+                { nome: 'Boné Dad Hat Off White', preco: 70.00, imagem: 'img/placeholder_bones_3.jpg', descricao: 'Estilo descontraído, 100% algodão.' },
+                { nome: 'Boné Camuflado Exército', preco: 65.00, imagem: 'img/placeholder_bones_4.jpg', descricao: 'Aba curva, padrão militar.' },
+                { nome: 'Boné Jeans Vintage', preco: 80.00, imagem: 'img/placeholder_bones_5.jpg', descricao: 'Lavagem clara, com rasgos.' },
+                { nome: 'Boné Esportivo Dry Fit', preco: 90.00, imagem: 'img/placeholder_bones_6.jpg', descricao: 'Tecido leve, ideal para corrida.' },
+                { nome: 'Boné Vermelho Básico', preco: 60.00, imagem: 'img/placeholder_bones_7.jpg', descricao: 'Aba curva, fivela ajustável.' },
+                { nome: 'Boné Infantil Tigre', preco: 55.00, imagem: 'img/placeholder_bones_8.jpg', descricao: 'A partir de 3 anos.' },
+                { nome: 'Boné de Couro Sintético', preco: 99.00, imagem: 'img/placeholder_bones_9.jpg', descricao: 'Preto fosco, premium.' },
+                { nome: 'Boné Bordado Floral', preco: 78.00, imagem: 'img/placeholder_bones_10.jpg', descricao: 'Detalhes coloridos na aba.' }
             ],
             'Óculos': [
-                { nome: 'Óculos Sol Aviador Polarizado', preco: 199.00, imagem: 'placeholder_oculos_1.jpg', descricao: 'Proteção UV400, lente escura.' },
-                { nome: 'Óculos Sol Quadrado Max', preco: 170.00, imagem: 'placeholder_oculos_2.jpg', descricao: 'Armação grossa, estilo moderno.' },
-                { nome: 'Óculos Sol Gatinho Retrô', preco: 185.00, imagem: 'placeholder_oculos_3.jpg', descricao: 'Armação preta, lentes fumê.' },
-                { nome: 'Óculos Esportivo Lente Azul', preco: 160.00, imagem: 'placeholder_oculos_4.jpg', descricao: 'Ideal para ciclismo e praia.' },
-                { nome: 'Armação Grau Metal Fino', preco: 120.00, imagem: 'placeholder_oculos_5.jpg', descricao: 'Leve e discreta, unissex.' },
-                { nome: 'Óculos Madeira Bambu', preco: 280.00, imagem: 'placeholder_oculos_6.jpg', descricao: 'Hastes de bambu natural.' },
-                { nome: 'Óculos Redondo Clássico', preco: 150.00, imagem: 'placeholder_oculos_7.jpg', descricao: 'Estilo John Lennon.' },
-                { nome: 'Óculos Infantil UV', preco: 90.00, imagem: 'placeholder_oculos_8.jpg', descricao: 'Design divertido e seguro.' },
-                { nome: 'Óculos de Sol Espelhado', preco: 210.00, imagem: 'placeholder_oculos_9.jpg', descricao: 'Lentes coloridas e reflexivas.' },
-                { nome: 'Kit 2 Óculos Básico', preco: 350.00, imagem: 'placeholder_oculos_10.jpg', descricao: 'Um preto e um marrom.' }
+                { nome: 'Óculos Sol Aviador Polarizado', preco: 199.00, imagem: 'img/placeholder_oculos_1.jpg', descricao: 'Proteção UV400, lente escura.' },
+                { nome: 'Óculos Sol Quadrado Max', preco: 170.00, imagem: 'img/placeholder_oculos_2.jpg', descricao: 'Armação grossa, estilo moderno.' },
+                { nome: 'Óculos Sol Gatinho Retrô', preco: 185.00, imagem: 'img/placeholder_oculos_3.jpg', descricao: 'Armação preta, lentes fumê.' },
+                { nome: 'Óculos Esportivo Lente Azul', preco: 160.00, imagem: 'img/placeholder_oculos_4.jpg', descricao: 'Ideal para ciclismo e praia.' },
+                { nome: 'Armação Grau Metal Fino', preco: 120.00, imagem: 'img/placeholder_oculos_5.jpg', descricao: 'Leve e discreta, unissex.' },
+                { nome: 'Óculos Madeira Bambu', preco: 280.00, imagem: 'img/placeholder_oculos_6.jpg', descricao: 'Hastes de bambu natural.' },
+                { nome: 'Óculos Redondo Clássico', preco: 150.00, imagem: 'img/placeholder_oculos_7.jpg', descricao: 'Estilo John Lennon.' },
+                { nome: 'Óculos Infantil UV', preco: 90.00, imagem: 'img/placeholder_oculos_8.jpg', descricao: 'Design divertido e seguro.' },
+                { nome: 'Óculos de Sol Espelhado', preco: 210.00, imagem: 'img/placeholder_oculos_9.jpg', descricao: 'Lentes coloridas e reflexivas.' },
+                { nome: 'Kit 2 Óculos Básico', preco: 350.00, imagem: 'img/placeholder_oculos_10.jpg', descricao: 'Um preto e um marrom.' }
             ],
             'Caixas de Som': [
-                { nome: 'Caixa Bluetooth Mini 10W', preco: 130.00, imagem: 'placeholder_caixa_1.jpg', descricao: 'Portátil, bateria de longa duração.' },
-                { nome: 'Caixa Portátil Média 30W', preco: 299.00, imagem: 'placeholder_caixa_2.jpg', descricao: 'Com alça, ideal para festas.' },
-                { nome: 'Soundbar Compacta TV', preco: 450.00, imagem: 'placeholder_caixa_3.jpg', descricao: 'Melhora o áudio de filmes e jogos.' },
-                { nome: 'Fone Bluetooth Cancelamento Ruído', preco: 210.00, imagem: 'placeholder_caixa_4.jpg', descricao: 'Áudio imersivo, confortável.' },
-                { nome: 'Caixa Torre Subwoofer 100W', preco: 890.00, imagem: 'placeholder_caixa_5.jpg', descricao: 'Alta potência e graves profundos.' },
-                { nome: 'Caixa de Som Vintage', preco: 310.00, imagem: 'placeholder_caixa_6.jpg', descricao: 'Estilo retrô, som potente.' },
-                { nome: 'Microfone Sem Fio Karaoke', preco: 170.00, imagem: 'placeholder_caixa_7.jpg', descricao: 'Perfeito para eventos.' },
-                { nome: 'Caixa Resistente à Água IPX7', preco: 390.00, imagem: 'placeholder_caixa_8.jpg', descricao: 'Para piscina e praia.' },
-                { nome: 'Headphone Gamer LED', preco: 260.00, imagem: 'placeholder_caixa_9.jpg', descricao: 'Com microfone flexível.' },
-                { nome: 'Mini Projetor Portátil', preco: 550.00, imagem: 'placeholder_caixa_10.jpg', descricao: 'Conexão HDMI e USB.' }
+                { nome: 'Caixa Bluetooth Mini 10W', preco: 130.00, imagem: 'img/placeholder_caixa_1.jpg', descricao: 'Portátil, bateria de longa duração.' },
+                { nome: 'Caixa Portátil Média 30W', preco: 299.00, imagem: 'img/placeholder_caixa_2.jpg', descricao: 'Com alça, ideal para festas.' },
+                { nome: 'Soundbar Compacta TV', preco: 450.00, imagem: 'img/placeholder_caixa_3.jpg', descricao: 'Melhora o áudio de filmes e jogos.' },
+                { nome: 'Fone Bluetooth Cancelamento Ruído', preco: 210.00, imagem: 'img/placeholder_caixa_4.jpg', descricao: 'Áudio imersivo, confortável.' },
+                { nome: 'Caixa Torre Subwoofer 100W', preco: 890.00, imagem: 'img/placeholder_caixa_5.jpg', descricao: 'Alta potência e graves profundos.' },
+                { nome: 'Caixa de Som Vintage', preco: 310.00, imagem: 'img/placeholder_caixa_6.jpg', descricao: 'Estilo retrô, som potente.' },
+                { nome: 'Microfone Sem Fio Karaoke', preco: 170.00, imagem: 'img/placeholder_caixa_7.jpg', descricao: 'Perfeito para eventos.' },
+                { nome: 'Caixa Resistente à Água IPX7', preco: 390.00, imagem: 'img/placeholder_caixa_8.jpg', descricao: 'Para piscina e praia.' },
+                { nome: 'Headphone Gamer LED', preco: 260.00, imagem: 'img/placeholder_caixa_9.jpg', descricao: 'Com microfone flexível.' },
+                { nome: 'Mini Projetor Portátil', preco: 550.00, imagem: 'img/placeholder_caixa_10.jpg', descricao: 'Conexão HDMI e USB.' }
             ]
         };
 
-        // Lógica do Carrinho e Modais (veja seção B)
-        function adicionarAoCarrinho(nome, preco) {
+        // Lógica do Carrinho e Modais
+        function adicionarAoCarrinho(nome, preco, buttonElement) {
             const itemExistente = carrinho.find(item => item.nome === nome);
             if (itemExistente) {
                 itemExistente.quantidade++;
             } else {
                 carrinho.push({ nome, preco, quantidade: 1 });
             }
-            alert(`✅ ${nome} adicionado ao carrinho! (Total: ${itemExistente ? itemExistente.quantidade : 1} unidade(s))`);
-            atualizarContadorCarrinho();
+            
+            // Micro-interação: Feedback Visual no Botão
+            if (buttonElement) {
+                const originalText = buttonElement.innerHTML;
+                
+                buttonElement.classList.add('btn-added');
+                buttonElement.innerHTML = '✓ Adicionado!';
+                
+                atualizarContadorCarrinho();
+
+                setTimeout(() => {
+                    buttonElement.classList.remove('btn-added');
+                    buttonElement.innerHTML = originalText;
+                }, 1500);
+            }
         }
 
         function atualizarContadorCarrinho() {
@@ -484,6 +851,7 @@
             let htmlContent = '';
             
             produtos.forEach(prod => {
+                // Passa 'this' para a função adicionarAoCarrinho para aplicar o feedback visual
                 htmlContent += `
                     <div class="item-detalhe">
                         <img src="${prod.imagem}" alt="${prod.nome}" class="item-imagem">
@@ -491,7 +859,7 @@
                             <h4>${prod.nome}</h4>
                             <p class="item-descricao">${prod.descricao}</p>
                             <p class="item-preco">R$ ${prod.preco.toFixed(2).replace('.', ',')}</p>
-                            <button onclick="adicionarAoCarrinho('${prod.nome}', ${prod.preco.toFixed(2)})" class="btn-adicionar-modal">
+                            <button onclick="adicionarAoCarrinho('${prod.nome}', ${prod.preco.toFixed(2)}, this)" class="btn-adicionar-modal">
                                 🛒 Adicionar ao Carrinho
                             </button>
                         </div>
@@ -517,7 +885,7 @@
             }
         }
         
-        // --- Funções de Scroll e Animação originais mantidas ---
+        // --- Animação de Scroll Suave ---
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -528,6 +896,7 @@
             });
         });
 
+        // --- Animação Fade-in/Slide-in para Cards ---
         const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -535,10 +904,11 @@
                     entry.target.style.opacity = '0';
                     entry.target.style.transform = 'translateY(20px)';
                     setTimeout(() => {
-                        entry.target.style.transition = 'all 0.6s ease';
+                        entry.target.style.transition = 'all 0.6s cubic-bezier(0.23, 1, 0.32, 1)'; 
                         entry.target.style.opacity = '1';
                         entry.target.style.transform = 'translateY(0)';
                     }, 100);
+                    observer.unobserve(entry.target);
                 }
             });
         }, observerOptions);
